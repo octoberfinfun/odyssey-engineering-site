@@ -23,7 +23,7 @@ Confirmed public company contact data used in the project:
 - Odyssey Engineering Group, LLC
 - 2500 Tanglewilde St., Suite 300, Houston, TX 77063
 - (281) 306-0240
-- services@odysseyeg.com
+- justin@odysseyengineeringgrp.com
 - TBPE No. F-17637 & 10195040
 
 Confirmed public social links used in the project:
