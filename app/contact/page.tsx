@@ -1,0 +1,6 @@
+import ContactForm from '@/components/ContactForm';
+import PageHero from '@/components/PageHero';
+import { site } from '@/lib/siteData';
+import { pageMetadata } from '@/lib/seo';
+export const metadata = pageMetadata('Contact Us','Contact Odyssey Engineering Group in Houston, Texas.','/contact');
+export default function ContactPage(){return <><PageHero title="Contact Us" path="/contact" description="Tell us about your project ideas or simply get in touch."/><section className="section"><div className="shell contact-layout"><div><h2>Start a conversation</h2><ContactForm/></div><aside className="contact-info"><h2>{site.name}</h2><address>{site.address}</address><p><a href={site.phoneHref}>{site.phone}</a><br/><a href={`mailto:${site.email}`}>{site.email}</a></p><p className="directions">Our office is located on the first floor, across from the south entry doors off Tanglewilde Street.</p><a className="text-link" href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(site.mapQuery)}`} target="_blank" rel="noreferrer">Get Directions ↗</a><iframe className="map" title="Odyssey Engineering Group office map" loading="lazy" src={`https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&output=embed`}/></aside></div></section></>}
