@@ -53,17 +53,23 @@ npm start
 
 ## Contact form
 
-Without environment variables, the form remains usable as a UI but reports that server-side delivery is not configured and directs the visitor to the public Odyssey email address.
+The contact form uses Nodemailer with a standard SMTP mailbox. No Resend API is used.
 
-To enable delivery, copy `.env.example` to `.env.local` and configure:
+Configure these variables locally in `.env.local` and in Vercel Environment Variables:
 
 ```env
-RESEND_API_KEY=
+SMTP_HOST=
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=justin@odysseyengineeringgrp.com
+SMTP_PASS=
+SMTP_FROM=Odyssey Engineering Group <justin@odysseyengineeringgrp.com>
 CONTACT_TO_EMAIL=justin@odysseyengineeringgrp.com
-CONTACT_FROM_EMAIL=Odyssey Engineering Group <justin@odysseyengineeringgrp.com>
 ```
 
-`justin@odysseyengineeringgrp.com` is used as the contact-form sender and the domain must be verified in Resend.
+Use the SMTP host, port, username, and password supplied by the mailbox provider for `odysseyengineeringgrp.com`. Port 465 normally uses `SMTP_SECURE=true`; port 587 normally uses `SMTP_SECURE=false`.
+
+Form submissions are sent to `justin@odysseyengineeringgrp.com`. The visitor's email is assigned to `replyTo`, so replying to the notification replies directly to the person who submitted the form.
 
 ## Media
 
