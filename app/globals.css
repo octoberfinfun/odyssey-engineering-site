@@ -303,7 +303,17 @@ button { color: inherit; }
 
 .footer { background: #102a33; color: #d8e1dd; padding: 65px 0 20px; }
 .footer-grid { display: grid; grid-template-columns: 1.45fr .7fr .9fr .7fr; gap: 58px; }
-.footer-brand img { width: 255px; background: #fff; padding: 12px 15px; margin-bottom: 20px; }
+.footer-brand img {
+  width: 220px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 24px;
+  filter: brightness(0) invert(1);
+  opacity: .96;
+}
 .footer-brand p { color: #bcc9c4; }
 .footer h3 { margin: 6px 0 17px; color: #fff; font-size: 1rem; }
 .footer-grid > div:not(.footer-brand) a { display: block; padding: 5px 0; color: #c9d4d0; font-size: .9rem; }
