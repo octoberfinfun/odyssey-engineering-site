@@ -63,17 +63,15 @@ export default function RouteTransition() {
       if (url.origin !== window.location.origin) return;
 
       const current = new URL(window.location.href);
-      const isSameLocation =
+      const isSameDocument =
         url.pathname === current.pathname &&
-        url.search === current.search &&
-        url.hash === current.hash;
+        url.search === current.search;
 
-      if (isSameLocation || navigating.current) return;
+      if (isSameDocument || navigating.current) return;
 
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       event.preventDefault();
-      event.stopPropagation();
       navigating.current = true;
       document.documentElement.classList.add('route-leaving');
 
