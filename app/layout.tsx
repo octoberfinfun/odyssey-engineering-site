@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import RouteTransition from '@/components/RouteTransition';
 import { site } from '@/lib/siteData';
 
 export const metadata: Metadata = {
@@ -17,5 +18,5 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}:{children:React.ReactNode}) {
   const org = { '@context':'https://schema.org','@type':'ProfessionalService',name:site.name,url:'https://www.odysseyeg.com',telephone:'+1-281-306-0240',email:site.email,address:{'@type':'PostalAddress',streetAddress:'2500 Tanglewilde St., Suite 300',addressLocality:'Houston',addressRegion:'TX',postalCode:'77063',addressCountry:'US'},sameAs:[site.linkedin,site.facebook,site.instagram] };
-  return <html lang="en"><body><Header/><main id="main">{children}</main><Footer/><Script id="organization-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(org)}}/></body></html>
+  return <html lang="en"><body><RouteTransition/><div className="site-frame"><Header/><main id="main">{children}</main><Footer/></div><Script id="organization-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(org)}}/></body></html>
 }
