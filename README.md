@@ -59,7 +59,7 @@ To enable delivery, copy `.env.example` to `.env.local` and configure:
 
 ```env
 RESEND_API_KEY=
-CONTACT_TO_EMAIL=services@odysseyeg.com
+CONTACT_TO_EMAIL=justin@odysseyengineeringgrp.com
 CONTACT_FROM_EMAIL=Odyssey Website <website@your-verified-domain.com>
 ```
 
