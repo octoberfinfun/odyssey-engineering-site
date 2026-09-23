@@ -57,17 +57,17 @@ The contact form uses Nodemailer with a standard SMTP mailbox. No Resend API is 
 
 Configure these variables locally in `.env.local` and in Vercel Environment Variables:
 
-```env
-SMTP_HOST=
-SMTP_PORT=465
-SMTP_SECURE=true
+\`\`\`env
+SMTP_HOST=smtp.ionos.com
+SMTP_PORT=587
+SMTP_SECURE=false
 SMTP_USER=justin@odysseyengineeringgrp.com
-SMTP_PASS=
+SMTP_PASS=<IONOS mailbox password>
 SMTP_FROM=Odyssey Engineering Group <justin@odysseyengineeringgrp.com>
 CONTACT_TO_EMAIL=justin@odysseyengineeringgrp.com
-```
+\`\`\`
 
-Use the SMTP host, port, username, and password supplied by the mailbox provider for `odysseyengineeringgrp.com`. Port 465 normally uses `SMTP_SECURE=true`; port 587 normally uses `SMTP_SECURE=false`.
+IONOS configuration is prefilled for `smtp.ionos.com` on port `587` using STARTTLS (`SMTP_SECURE=false`). `SMTP_PASS` must be the password assigned to the `justin@odysseyengineeringgrp.com` IONOS mailbox.
 
 Form submissions are sent to `justin@odysseyengineeringgrp.com`. The visitor's email is assigned to `replyTo`, so replying to the notification replies directly to the person who submitted the form.
 
