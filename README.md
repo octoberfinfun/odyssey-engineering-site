@@ -60,10 +60,10 @@ To enable delivery, copy `.env.example` to `.env.local` and configure:
 ```env
 RESEND_API_KEY=
 CONTACT_TO_EMAIL=justin@odysseyengineeringgrp.com
-CONTACT_FROM_EMAIL=Odyssey Website <website@your-verified-domain.com>
+CONTACT_FROM_EMAIL=Odyssey Engineering Group <justin@odysseyengineeringgrp.com>
 ```
 
-`CONTACT_FROM_EMAIL` must use a sender/domain accepted by your email provider.
+`justin@odysseyengineeringgrp.com` is used as the contact-form sender and the domain must be verified in Resend.
 
 ## Media
 
