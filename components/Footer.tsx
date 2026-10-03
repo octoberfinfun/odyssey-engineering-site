@@ -28,6 +28,7 @@ export default function Footer() {
         <Link href="/resources">Resources</Link>
         <Link href="/join-our-team">Join Our Team</Link>
         <Link href="/contact">Contact</Link>
+        <a className="footer-shop-link" href="https://shop.odysseyengineeringgrp.com">Odyssey Field Supply ↗</a>
       </div>
     </div>
     <div className="shell footer-bottom">
