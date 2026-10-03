@@ -24,6 +24,27 @@ export default function HomePage() {
       </div>
     </section>
 
+    <section className="section field-supply-section">
+      <div className="shell field-supply-card">
+        <div className="field-supply-kicker">Odyssey Field Supply</div>
+        <div className="field-supply-layout">
+          <div className="field-supply-copy">
+            <h2>Professional field equipment, now available from Odyssey.</h2>
+            <p>Odyssey Field Supply is our dedicated online store for surveyors, engineers, inspectors, contractors and field crews. Shop practical equipment and everyday field essentials selected around the work our industry does every day.</p>
+            <div className="field-supply-actions">
+              <a className="field-supply-button" href="https://shop.odysseyengineeringgrp.com">Shop Field Supply <span aria-hidden="true">↗</span></a>
+              <a className="field-supply-url" href="https://shop.odysseyengineeringgrp.com">shop.odysseyengineeringgrp.com</a>
+            </div>
+          </div>
+          <div className="field-supply-categories" aria-label="Field Supply product categories">
+            <div><strong>Survey &amp; Layout</strong><span>Tripods, rods, prism poles, marking and measuring gear.</span></div>
+            <div><strong>Field Tools</strong><span>Distance meters, work lights, notebooks and inspection essentials.</span></div>
+            <div><strong>Safety &amp; Site</strong><span>High-visibility apparel, protective gear and traffic-control supplies.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section className="section services-section">
       <div className="shell">
         <div className="section-title-line"><h2>Our Services</h2><Link href="/our-services">View all services</Link></div>
