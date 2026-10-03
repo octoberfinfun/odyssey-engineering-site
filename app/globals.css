@@ -506,3 +506,172 @@ button { color: inherit; }
 @media (max-width:700px){.archive-pagination{width:min(calc(100% - 30px),var(--shell));}}
 @media (max-width:430px){.archive-pagination{width:min(calc(100% - 24px),var(--shell));}}
 .crumbs { flex-wrap:wrap; }
+
+
+/* Odyssey Field Supply */
+.shop-nav-link {
+  align-self: center;
+  min-height: 44px !important;
+  margin: 0 4px 0 8px;
+  padding: 0 16px !important;
+  gap: 8px;
+  border: 1px solid var(--green-dark) !important;
+  background: var(--green-dark) !important;
+  color: #fff !important;
+  font-size: .84rem !important;
+  letter-spacing: .01em;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease !important;
+}
+.shop-nav-link::after { display: none !important; }
+.shop-nav-link:hover { background: #3f7528 !important; border-color: #3f7528 !important; transform: translateY(-1px); }
+.shop-nav-arrow { font-size: 1rem; line-height: 1; }
+
+.field-supply-section {
+  padding: 38px 0 88px;
+  background: #fff;
+}
+.field-supply-card {
+  position: relative;
+  overflow: hidden;
+  padding: 58px 62px 62px;
+  background: var(--navy);
+  color: #fff;
+  box-shadow: 0 22px 56px rgba(17,45,54,.16);
+  isolation: isolate;
+}
+.field-supply-card::before {
+  content: '';
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  right: -165px;
+  top: -235px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+  box-shadow: 0 0 0 66px rgba(255,255,255,.035), 0 0 0 132px rgba(255,255,255,.025);
+  z-index: -1;
+}
+.field-supply-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 100%;
+  background: var(--green);
+}
+.field-supply-kicker {
+  margin-bottom: 22px;
+  color: #b9dda9;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.field-supply-layout {
+  display: grid;
+  grid-template-columns: minmax(0,1.15fr) minmax(330px,.85fr);
+  gap: 68px;
+  align-items: start;
+}
+.field-supply-copy h2 {
+  max-width: 690px;
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(2rem,3.6vw,3.45rem);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+}
+.field-supply-copy > p {
+  max-width: 680px;
+  margin: 0;
+  color: #d6e0dc;
+  font-size: 1.03rem;
+}
+.field-supply-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-top: 32px;
+}
+.field-supply-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 12px 21px;
+  background: var(--green);
+  color: #102a33;
+  font-weight: 800;
+  transition: background .18s ease, transform .18s ease;
+}
+.field-supply-button:hover { background: #78bc52; transform: translateY(-1px); }
+.field-supply-button span { font-size: 1.05rem; }
+.field-supply-url {
+  color: #dce7e2;
+  font-size: .91rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(220,231,226,.45);
+}
+.field-supply-url:hover { color: #fff; border-color: #fff; }
+.field-supply-categories {
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+.field-supply-categories > div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  padding: 19px 0;
+  border-bottom: 1px solid rgba(255,255,255,.17);
+}
+.field-supply-categories strong {
+  color: #fff;
+  font-size: .95rem;
+}
+.field-supply-categories span {
+  color: #bccbc5;
+  font-size: .91rem;
+  line-height: 1.5;
+}
+.footer-shop-link {
+  margin-top: 9px;
+  color: #b8dca8 !important;
+  font-weight: 800;
+}
+
+@media (max-width: 1130px) {
+  .shop-nav-link { padding-inline: 12px !important; margin-left: 4px; font-size: .78rem !important; }
+  .field-supply-card { padding: 50px 48px 54px; }
+  .field-supply-layout { gap: 45px; }
+}
+
+@media (max-width: 940px) {
+  .shop-nav-link {
+    width: auto !important;
+    min-height: 50px !important;
+    margin: 12px 18px !important;
+    padding: 12px 18px !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid var(--green-dark) !important;
+  }
+  .field-supply-section { padding: 26px 0 68px; }
+  .field-supply-layout { grid-template-columns: 1fr; gap: 42px; }
+  .field-supply-categories { max-width: 720px; }
+}
+
+@media (max-width: 700px) {
+  .field-supply-section { padding: 16px 0 58px; }
+  .field-supply-card { padding: 42px 30px 44px 35px; }
+  .field-supply-layout { gap: 34px; }
+  .field-supply-actions { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .field-supply-categories > div { grid-template-columns: 1fr; gap: 4px; }
+}
+
+@media (max-width: 430px) {
+  .field-supply-card { padding: 36px 22px 38px 28px; }
+  .field-supply-copy h2 { font-size: 2rem; }
+  .field-supply-button { width: 100%; }
+  .field-supply-url { font-size: .82rem; overflow-wrap: anywhere; }
+}
