@@ -63,6 +63,9 @@ export default function Header() {
             <Link href="/resources" onClick={() => setOpen(false)}>Resources</Link>
             <Link href="/join-our-team" onClick={() => setOpen(false)}>Join Our Team</Link>
             <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+            <a className="shop-nav-link" href="https://shop.odysseyengineeringgrp.com" onClick={() => setOpen(false)}>
+              <span>Field Supply</span><span className="shop-nav-arrow" aria-hidden="true">↗</span>
+            </a>
             <button className="search-button" onClick={() => setSearchOpen(true)} aria-label="Search site">
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
             </button>
