@@ -29,9 +29,9 @@ jobs:
       - name: Install Playwright
         shell: bash
         run: |
-          mkdir -p .qa-playwright
+          mkdir -p .qa-playwright/qa-results
           cd .qa-playwright
-          npm init -y
+          printf '%s\n' '{"name":"odyssey-qa-playwright","private":true}' > package.json
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
 
