@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       sessions:
-        description: "Number of test browser sessions (1-20)"
+        description: "Number of test browser sessions (1-100)"
         required: true
         default: "5"
         type: string
@@ -50,7 +50,7 @@ jobs:
 
           const storeUrl = process.env.STORE_URL;
           const requested = Number.parseInt(process.env.REQUESTED_SESSIONS || '5', 10);
-          const sessions = Number.isFinite(requested) ? Math.min(20, Math.max(1, requested)) : 5;
+          const sessions = Number.isFinite(requested) ? Math.min(100, Math.max(1, requested)) : 5;
 
           const viewports = [
             { width: 1440, height: 900 },
@@ -69,15 +69,6 @@ jobs:
           };
 
           const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-          function qaUrl(raw, sessionNumber) {
-            const url = new URL(raw, storeUrl);
-            url.searchParams.set('utm_source', 'github_actions');
-            url.searchParams.set('utm_medium', 'qa');
-            url.searchParams.set('utm_campaign', 'playwright_storefront_test');
-            url.searchParams.set('utm_content', `session_${sessionNumber}`);
-            return url.toString();
-          }
 
           async function safeGoto(page, url, sessionLog, label) {
             const started = Date.now();
@@ -124,6 +115,10 @@ jobs:
               const context = await browser.newContext({
                 viewport,
                 locale: 'en-US',
+                userAgent: 'Odyssey-QA-Playwright/1.0',
+                extraHTTPHeaders: {
+                  'X-Odyssey-QA': 'true',
+                },
               });
               const page = await context.newPage();
 
@@ -161,7 +156,7 @@ jobs:
                 }
               });
 
-              const homeOk = await safeGoto(page, qaUrl(storeUrl, i), sessionLog, 'home');
+              const homeOk = await safeGoto(page, storeUrl, sessionLog, 'home');
 
               if (homeOk) {
                 if (i === 1) {
@@ -181,7 +176,7 @@ jobs:
                 if (collectionHref) {
                   const collectionOk = await safeGoto(
                     page,
-                    qaUrl(collectionHref, i),
+                    collectionHref,
                     sessionLog,
                     'collection'
                   );
@@ -200,7 +195,7 @@ jobs:
                     if (productHref) {
                       const productOk = await safeGoto(
                         page,
-                        qaUrl(productHref, i),
+                        productHref,
                         sessionLog,
                         'product'
                       );
@@ -258,10 +253,8 @@ jobs:
               `Recorded errors: ${report.summary.totalErrors}`,
               `Failed requests: ${report.summary.totalFailedRequests}`,
               '',
-              'Traffic is tagged with:',
-              '- utm_source=github_actions',
-              '- utm_medium=qa',
-              '- utm_campaign=playwright_storefront_test',
+              'QA traffic does not add UTM parameters to URLs.',
+              'It remains identifiable by the dedicated User-Agent and X-Odyssey-QA request header.',
               '',
               'See the uploaded qa-results artifact for report.json and screenshots.',
             ];
