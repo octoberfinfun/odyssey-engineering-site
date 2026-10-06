@@ -116,9 +116,6 @@ jobs:
                 viewport,
                 locale: 'en-US',
                 userAgent: 'Odyssey-QA-Playwright/1.0',
-                extraHTTPHeaders: {
-                  'X-Odyssey-QA': 'true',
-                },
               });
               const page = await context.newPage();
 
@@ -168,56 +165,57 @@ jobs:
 
                 await sleep(900);
 
-                const collectionHref = await firstHref(
+                const homeProductHref = await firstHref(page, 'a[href*="/products/"]');
+
+                let collectionHref = await firstHref(
                   page,
                   'a[href*="/collections/"]:not([href*="/collections/all"])'
                 );
 
-                if (collectionHref) {
-                  const collectionOk = await safeGoto(
-                    page,
-                    collectionHref,
-                    sessionLog,
-                    'collection'
-                  );
+                if (!collectionHref) {
+                  collectionHref = new URL('/collections/all', storeUrl).toString();
+                }
 
-                  if (collectionOk) {
-                    if (i === 1) {
+                const collectionOk = await safeGoto(
+                  page,
+                  collectionHref,
+                  sessionLog,
+                  'collection'
+                );
+
+                if (collectionOk) {
+                  if (i === 1) {
+                    await page.screenshot({
+                      path: 'qa-results/collection.png',
+                      fullPage: true,
+                    });
+                  }
+
+                  await sleep(900);
+
+                  const collectionProductHref = await firstHref(page, 'a[href*="/products/"]');
+                  const productHref = collectionProductHref || homeProductHref;
+
+                  if (productHref) {
+                    const productOk = await safeGoto(
+                      page,
+                      productHref,
+                      sessionLog,
+                      'product'
+                    );
+
+                    if (productOk && i === 1) {
                       await page.screenshot({
-                        path: 'qa-results/collection.png',
+                        path: 'qa-results/product.png',
                         fullPage: true,
                       });
                     }
-
-                    await sleep(900);
-
-                    const productHref = await firstHref(page, 'a[href*="/products/"]');
-                    if (productHref) {
-                      const productOk = await safeGoto(
-                        page,
-                        productHref,
-                        sessionLog,
-                        'product'
-                      );
-
-                      if (productOk && i === 1) {
-                        await page.screenshot({
-                          path: 'qa-results/product.png',
-                          fullPage: true,
-                        });
-                      }
-                    } else {
-                      sessionLog.errors.push({
-                        type: 'content',
-                        message: 'No product link was found on the selected collection page.',
-                      });
-                    }
+                  } else {
+                    sessionLog.errors.push({
+                      type: 'content',
+                      message: 'No product link was found on the collection or homepage.',
+                    });
                   }
-                } else {
-                  sessionLog.errors.push({
-                    type: 'content',
-                    message: 'No collection link was found on the homepage.',
-                  });
                 }
               }
 
@@ -254,7 +252,7 @@ jobs:
               `Failed requests: ${report.summary.totalFailedRequests}`,
               '',
               'QA traffic does not add UTM parameters to URLs.',
-              'It remains identifiable by the dedicated User-Agent and X-Odyssey-QA request header.',
+              'It remains identifiable by the dedicated Odyssey-QA-Playwright User-Agent.',
               '',
               'See the uploaded qa-results artifact for report.json and screenshots.',
             ];
